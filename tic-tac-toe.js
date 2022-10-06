@@ -1,27 +1,42 @@
 window.addEventListener("load", (event)=> {
+    let active;
     let squares  = document.querySelectorAll("#board > div");
     let state = -1;
 
-    squares.forEach((square)=> {
-        square.classList.add("square");
-        square.innerHTML = " ";
+    squares.forEach((sq)=> {
+        sq.classList.add("square");
+        sq.innerHTML = " ";
 
     });
-
-    squares.forEach((square)=> {
-        square.onclick = (event)=>{
+    
+    squares.forEach((sq)=> {
+        sq.onclick = (event)=>{
             if (state == -1 || state == 1){
-                square.classList.remove("O");
-                square.classList.add("X");
-                square.innerHTML = 'X';
+                sq.classList.remove("O");
+                sq.classList.add("X");
+                sq.innerHTML = 'X';
                 state = 0;
             }
             else {
-                square.classList.remove("X");
-                square.classList.add("O");
-                square.innerHTML = 'O';
+                sq.classList.remove("X");
+                sq.classList.add("O");
+                sq.innerHTML = 'O';
                 state = 1;
             }
-        }  
+        }
+
+        sq.onmouseover = (event)=>{
+            sq.style.transition = "all .3s ease-in-out"
+            sq.classList.add("hover");
+        }
+
+        sq.onmouseout = (event)=>{
+            sq.classList.remove("hover");
+        }
+
     });
+
+    bton.addEventListener('click', (event) => {
+        squares.forEach((sq) => sq.innerHTML = "");
+    })
 });
